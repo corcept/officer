@@ -156,6 +156,16 @@ cursor_reach <- function(x, keyword) {
 
 #' @export
 #' @rdname cursor
+#' @param index index of the body nodeset to set the cursor
+#' @section cursor_set:
+#' Set the cursor on a specific element of the document
+cursor_set <- function(x, index) {
+  x$officer_cursor$which <- index
+  x
+}
+
+#' @export
+#' @rdname cursor
 #' @param keyword keyword to look for as a regular expression
 #' @section cursor_reach_test:
 #' Test if an expression has a match in the document
