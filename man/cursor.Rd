@@ -5,6 +5,7 @@
 \alias{cursor_bookmark}
 \alias{cursor_end}
 \alias{cursor_reach}
+\alias{cursor_set}
 \alias{cursor_reach_test}
 \alias{cursor_forward}
 \alias{cursor_backward}
@@ -18,6 +19,8 @@ cursor_end(x)
 
 cursor_reach(x, keyword)
 
+cursor_set(x, index)
+
 cursor_reach_test(x, keyword)
 
 cursor_forward(x)
@@ -30,6 +33,8 @@ cursor_backward(x)
 \item{id}{bookmark id}
 
 \item{keyword}{keyword to look for as a regular expression}
+
+\item{index}{index of the body nodeset to set the cursor}
 }
 \description{
 A set of functions is available to manipulate
@@ -58,6 +63,11 @@ of the document.
 Set the cursor on the first element of the document
 that contains text specified in argument \code{keyword}.
 The argument \code{keyword} is a regexpr pattern.
+}
+
+\section{cursor_set}{
+
+Set the cursor on a specific element of the document
 }
 
 \section{cursor_reach_test}{
