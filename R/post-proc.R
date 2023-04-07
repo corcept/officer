@@ -176,7 +176,7 @@ process_stylenames <- function(doc_obj, styles) {
     stylenames <- xml_attr(styles_nodes, "stlname")
     if (!all(stylenames %in% styles$style_name)) {
       missing_styles <- paste0(shQuote(unique(setdiff(stylenames, styles$style_name))), collapse = ", ")
-      if(!all(missing_styles  == "CSR-Table")) {
+      if(!all(setdiff(stylenames, styles$style_name) == "CSR-Table")) {
         stop("Some styles can not be found in the document: ", missing_styles)
       }
     }
