@@ -579,7 +579,7 @@ to_wml.prop_table <- function(x, add_ns = FALSE, base_document = NULL, ...) {
          if(!is.null(x$word_description)) paste0("<w:tblDescription w:val=\"", htmlEscapeCopy(x$word_description), "\"/>"),
          if(!is.na(style)) paste0("<w:tblStyle w:stlname=\"", style, "\"/>"),
          tbl_layout,
-         sprintf( "<w:jc w:val=\"%s\"/>", x$align ),
+         if(!is.null(x$align)) sprintf( "<w:jc w:val=\"%s\"/>", x$align ),
          width, tcf,
          "</w:tblPr>",
          if(x$layout$type %in% "fixed") colwidths
