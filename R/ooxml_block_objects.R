@@ -589,7 +589,7 @@ to_wml.prop_table <- function(x, add_ns = FALSE, base_document = NULL, ...) {
 
 
 # table ----
-table_docx <- function(x, header, style_id,
+table_docx <- function(x, header, style_id, escape_cells = TRUE,
                        properties, alignment = NULL, add_ns = FALSE,
                        base_document = base_document) {
   open_tag <- tbl_ns_no
@@ -636,7 +636,7 @@ table_docx <- function(x, header, style_id,
       "<w:tc><w:p>",
       sprintf("<w:pPr>%s%s</w:pPr>", stylenames, align),
       "<w:r><w:t>",
-      htmlEscapeCopy(enc2utf8(x)),
+      if_elser(escape_cells, htmlEscapeCopy(enc2utf8(x)), enc2utf8(x)),
       "</w:t></w:r></w:p></w:tc>"
     )
   }
@@ -646,6 +646,12 @@ table_docx <- function(x, header, style_id,
 
   paste0(str, header_str, z, "</w:tbl>")
 }
+
+if_elser <- function(test, yes, no) {
+  if(test) return(yes)
+  return(no)
+}
+
 
 table_pptx <- function(x, style_id, col_width, row_height,
                        tcf, header = TRUE, alignment = NULL ){
@@ -751,7 +757,8 @@ to_wml.block_table <- function(x, add_ns = FALSE, base_document = NULL, ...) {
     properties = x$properties,
     alignment = x$alignment,
     base_document = base_document,
-    add_ns = add_ns
+    add_ns = add_ns,
+    ...
   )
 
   out
